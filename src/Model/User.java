@@ -1,0 +1,87 @@
+package Model;
+
+import java.util.Date;
+
+public class User {
+    private Integer id;
+    private String email;
+    private String password;
+    private String name;
+    private String company;
+    private String telephone;
+    private Date dateCreation;
+    private Constant.STATUS status;
+    private Constant.USERTYPE type;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public Constant.STATUS getStatus() {
+        return status;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Constant.USERTYPE getType() {
+        return type;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setStatus(Constant.STATUS status) {
+        this.status = status;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setType(Constant.USERTYPE type) {
+        this.type = type;
+    }
+}
