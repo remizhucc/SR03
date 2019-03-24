@@ -14,22 +14,26 @@
 </head>
 <body>
 <div>TODO write content</div>
-<form action="/ImplementationMVC/CreerUnUtilisateur" method="post"><label> First name </label> <input type="text"
-                                                                                                      id="frname"
-                                                                                                      name="User first name"/>
-    <br> <label> Familly name </label> <input type="text" id="faname" name="User familly name"/> <br>
-    <label>
-        Email
-    </label> <input type="email" id="email" name="User email"/> <br> <label> Password </label>
-    <input
-            type="password" id="psw" name="User password"/> <br> <label> male </label> <input type="radio" id="male"
-                                                                                              name="gender"
-                                                                                              value="male"
-                                                                                              checked/>
+<form action="/ImplementationMVC/CreerUnUtilisateur" method="post">
+    <label> First name </label>
+    <input type="text" id="frname" name="User first name"/>
     <br>
-    <label>
-        female
-    </label> <input type="radio" id="female" name="gender" value="female"/> <br> <input type="submit" value="Submit">
+    <label> Last name </label>
+    <input type="text" id="faname" name="User last name"/>
+    <br>
+    <label>Email</label>
+    <input type="email" id="email" name="User email"/>
+    <br>
+    <label> Password </label>
+    <input type="password" id="psw" name="User password"/>
+    <br>
+    <label> male </label>
+    <input type="radio" id="male" name="gender" value="male" checked/>
+    <br>
+    <label>female</label>
+    <input type="radio" id="female" name="gender" value="female"/>
+    <br>
+    <input type="submit" value="Submit">
 </form>
 </body>
 </html>

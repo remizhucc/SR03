@@ -6,12 +6,35 @@ public class User {
     private Integer id;
     private String email;
     private String password;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String company;
     private String telephone;
     private Date dateCreation;
     private Constant.STATUS status;
     private Constant.USERTYPE type;
+
+    public User(String email,String password,String firstName,String lastName,String company,String telephone){
+        this.email=email;
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.company=company;
+        this.telephone=telephone;
+    }
+    public User(Integer id,String email,String password,String firstName,String lastName,String company,String telephone,Date dateCreation,
+                Constant.STATUS status,Constant.USERTYPE type){
+        this.id=id;
+        this.email=email;
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.company=company;
+        this.telephone=telephone;
+        this.dateCreation=dateCreation;
+        this.status=status;
+        this.type=type;
+    }
 
     public Integer getId() {
         return id;
@@ -37,8 +60,16 @@ public class User {
         return email;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getPassword() {
@@ -65,8 +96,12 @@ public class User {
         this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setPassword(String password) {

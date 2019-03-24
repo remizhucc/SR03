@@ -13,8 +13,8 @@ lastName VARCHAR(30) NOT NULL,
 company VARCHAR(30),
 telephone VARCHAR(30),
 dateCreation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-status ENUM ('active', 'inactive'),
-type ENUM('Administrator', 'Trainee')
+status ENUM ('active', 'inactive') DEFAULT 'active',
+type ENUM('Administrator', 'Trainee') DEFAULT 'Trainee'
 );
 
 CREATE TABLE Questionnaire (
