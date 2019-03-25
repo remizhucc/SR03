@@ -10,4 +10,6 @@ public final class Constant {
         ADMIN,
         TRAINEE
     }
+
+
 }

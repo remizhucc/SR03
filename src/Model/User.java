@@ -14,6 +14,28 @@ public class User {
     private Constant.STATUS status;
     private Constant.USERTYPE type;
 
+    public User(String email,String password,String firstName,String lastName,String company,String telephone){
+        this.email=email;
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.company=company;
+        this.telephone=telephone;
+    }
+    public User(Integer id,String email,String password,String firstName,String lastName,String company,String telephone,Date dateCreation,
+                Constant.STATUS status,Constant.USERTYPE type){
+        this.id=id;
+        this.email=email;
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.company=company;
+        this.telephone=telephone;
+        this.dateCreation=dateCreation;
+        this.status=status;
+        this.type=type;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -45,6 +67,7 @@ public class User {
     public String getLastName() {
         return lastName;
     }
+
 
     public String getPassword() {
         return password;
