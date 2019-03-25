@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Constant;
+import Model.SQL;
 import Model.User;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import com.mysql.jdbc.Driver;
 
 
 import java.sql.Statement;
@@ -60,16 +62,12 @@ public class CreateUser extends HttpServlet {
         User user = usersTable.get(usersTable.size() - 1);
 
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
-
-            conn = DriverManager.getConnection(Constant.SQLConnection.URL,Constant.SQLConnection.USER,Constant.SQLConnection.PASSWORD);
-
+            conn=SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
             sql = "INSERT INTO User (email, firstName, lastName, company, telephone) VALUES ('"+ user.getEmail()+"', '"+ user.getFirstName() + "', '"+ user.getLastName()+ "', '"+ user.getCompany()+ "','"+ user.getTelephone()+ "')";
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt.executeUpdate(sql);
 
-            rs.close();
             stmt.close();
             conn.close();
         } catch(SQLException se) {
@@ -109,7 +107,6 @@ public class CreateUser extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        System.out.println("TEST OK!!!!!!!!!");
         processRequest(request, response);
     }
 

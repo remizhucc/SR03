@@ -13,13 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div>TODO write content</div>
+<div>Create User</div>
 <form action="/creatuser" method="post">
     <label> First name </label>
     <input type="text" id="frname" name="User first name"/>
     <br>
     <label> Last name </label>
-    <input type="text" id="faname" name="User last name"/>
+    <input type="text" id="laname" name="User last name"/>
     <br>
     <label>Email</label>
     <input type="email" id="email" name="User email"/>
@@ -27,11 +27,11 @@
     <label> Password </label>
     <input type="password" id="psw" name="User password"/>
     <br>
-    <label> male </label>
-    <input type="radio" id="male" name="gender" value="male" checked/>
+    <label> Company </label>
+    <input type="text" id="cp" name="User company"/>
     <br>
-    <label>female</label>
-    <input type="radio" id="female" name="gender" value="female"/>
+    <label> Telephone </label>
+    <input type="number" id="tel" name="User telephone"/>
     <br>
     <input type="submit" value="Submit">
 </form>
