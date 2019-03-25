@@ -109,6 +109,7 @@ public class CreateUser extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        System.out.println("TEST OK!!!!!!!!!");
         processRequest(request, response);
     }
 
