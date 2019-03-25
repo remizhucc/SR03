@@ -5,6 +5,13 @@ public class Question {
     private String text;
     private Integer postion;
 
+    public void Question () {
+    	
+    }
+    
+    public void Question (String text) {
+    	this.text = text;
+    }
     public Integer getId() {
         return id;
     }

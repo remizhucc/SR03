@@ -5,6 +5,17 @@ public class Questionnaire {
     private String subject;
     private Constant.STATUS status;
 
+    public void Questionnaire() {
+    	this.id = null;
+    	this.subject = null;
+    	status = ACTIVE;
+    }
+    
+    public void Questionnaire(Integer id, String subject, Constant.STATUS status) {
+    	this.subject = subject;
+    	status = status;
+    }
+    
     public void setId(Integer id) {
         this.id = id;
     }

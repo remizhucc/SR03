@@ -14,7 +14,7 @@
 </head>
 <body>
 <div>TODO write content</div>
-<form action="/ImplementationMVC/CreerUnUtilisateur" method="post"><label> First name </label> <input type="text"
+<form action="/Controller/CreateUser" method="post"><label> First name </label> <input type="text"
                                                                                                       id="frname"
                                                                                                       name="User first name"/>
     <br> <label> Familly name </label> <input type="text" id="faname" name="User familly name"/> <br>
