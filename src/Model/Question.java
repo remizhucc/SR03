@@ -4,7 +4,10 @@ public class Question {
     private Integer id;
     private String text;
     private Integer postion;
-
+    
+    public Question (String text) {
+    	this.text = text;
+    }
     public Integer getId() {
         return id;
     }

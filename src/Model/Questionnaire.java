@@ -1,10 +1,22 @@
 package Model;
 
+import static Model.Constant.STATUS.ACTIVE;
+
 public class Questionnaire {
     private Integer id;
     private String subject;
     private Constant.STATUS status;
 
+    /*public void Questionnaire() {
+    	this.id = null;
+    	this.subject = null;
+    	status = ACTIVE;
+    }*/
+    
+    public Questionnaire(String subject) {
+    	this.subject = subject;
+    }
+    
     public void setId(Integer id) {
         this.id = id;
     }
