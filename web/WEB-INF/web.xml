@@ -10,8 +10,8 @@
 
 
     <servlet>
-        <servlet-name>createUser</servlet-name>
-        <servlet-class>Controller.CreateUser</servlet-class>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>test.HomeServlet</servlet-class>
         <!--<init-param>-->
             <!--<param-name>Name</param-name>-->
             <!--<param-value>123</param-value>-->
@@ -25,8 +25,8 @@
 
 
     <servlet-mapping>
-        <servlet-name>createUser</servlet-name>
-        <url-pattern>/creatuser</url-pattern>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
 
