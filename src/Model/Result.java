@@ -6,7 +6,15 @@ public class Result {
     private Integer id;
     private Integer score;
     private Date dateCreation;
+    private String trainee;
 
+    public Result(Integer id, Integer score, Date dateCreation, String trainee){
+        this.id = id;
+        this.score = score;
+        this.dateCreation = dateCreation;
+        this.trainee = trainee;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -30,4 +38,8 @@ public class Result {
     public void setScore(Integer score) {
         this.score = score;
     }
+
+    public String getTrainee(){ return trainee; }
+
+    public void setTrainee(String trainee){this.trainee = trainee;}
 }
