@@ -27,7 +27,7 @@ CREATE TABLE Question (
 id SERIAL PRIMARY KEY,
 text VARCHAR(500) NOT NULL,
 position INTEGER NOT NULL,
-status ENUM ('active', 'inactive'),
+status ENUM ('active', 'inactive') DEFAULT 'active',
 questionnaire INTEGER NOT NULL REFERENCES Questionnaire(id)
 );
 
@@ -36,7 +36,7 @@ id SERIAL PRIMARY KEY,
 text VARCHAR(100) NOT NULL,
 position INTEGER NOT NULL,
 correction BOOLEAN NOT NULL,
-status ENUM ('active', 'inactive'),
+status ENUM ('active', 'inactive') DEFAULT 'active',
 question INTEGER  NOT NULL REFERENCES Question(id)
 );
 
