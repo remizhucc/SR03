@@ -20,7 +20,7 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "select * from user where id=" + String.valueOf(id);
+            sql = "select * from User where id='" + String.valueOf(id)+"'";
             result = stmt.executeQuery(sql);
             while (result.next()) {
                 user = new User(Integer.valueOf(result.getInt("id")),
@@ -113,15 +113,15 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "UPDATE User SET email="+user.getEmail()
-                    +"password="+user.getPassword()
-                    +"firstName="+user.getFirstName()
-                    +"lastName="+user.getLastName()
-                    +"company="+user.getCompany()
-                    +"telephone="+user.getTelephone()
-                    +"status="+user.getStatus().toString()
-                    +"type="+user.getType().toString()
-                    +" WHERE id="+user.getId();
+            sql = "UPDATE User SET email='"+user.getEmail()+"'"
+                    +"password='"+user.getPassword()+"'"
+                    +"firstName='"+user.getFirstName()+"'"
+                    +"lastName='"+user.getLastName()+"'"
+                    +"company='"+user.getCompany()+"'"
+                    +"telephone='"+user.getTelephone()+"'"
+                    +"status='"+user.getStatus().toString()+"'"
+                    +"type='"+user.getType().toString()+"'"
+                    +" WHERE id='"+user.getId()+"'";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -141,7 +141,7 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "DELETE FROM User WHERE id="+user.getId();
+            sql = "DELETE FROM User WHERE id='"+user.getId()+"'";
             stmt.executeUpdate(sql);
 
             stmt.close();
