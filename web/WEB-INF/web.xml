@@ -26,8 +26,29 @@
 
     <servlet-mapping>
         <servlet-name>createUser</servlet-name>
-        <url-pattern>/creatuser</url-pattern>
+        <url-pattern>/createuser</url-pattern>
     </servlet-mapping>
+
+    <!--questionnaire-->
+    <servlet>
+        <servlet-name>questionnaire</servlet-name>
+        <jsp-file>/WEB-INF/pages/questionnaire.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>questionnaire</servlet-name>
+    <url-pattern>/questionnaire</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createQuestionnaire</servlet-name>
+        <servlet-class>Controller.CreateQuestionnaire</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createQuestionnaire</servlet-name>
+        <url-pattern>/createquestionnaire</url-pattern>
+    </servlet-mapping>
+
 
 
 </web-app>
