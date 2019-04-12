@@ -22,8 +22,8 @@ public class User {
         this.company=company;
         this.telephone=telephone;
     }
-    public User(Integer id,String email,String password,String firstName,String lastName,String company,String telephone,Date dateCreation,
-                Constant.STATUS status,Constant.USERTYPE type){
+    public User(Integer id,String email,String password,String firstName,String lastName,String company,
+                String telephone,Date dateCreation, Constant.STATUS status,Constant.USERTYPE type){
         this.id=id;
         this.email=email;
         this.password=password;
