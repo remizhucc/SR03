@@ -193,5 +193,7 @@ public class DAOResult implements DAOInterface<Result> {
             }
         }
     }
+
+    //add a function : select by user
 }
 

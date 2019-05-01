@@ -1,21 +1,18 @@
 package Model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class DAOAnswer implements DAOInterface<Answer> {
-
-
+public class DAOQuestion implements DAOInterface<Question>{
     @Override
-    public Answer selectByID(int id) {
+    public Question selectByID(int id) {
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
-        Answer answer=null;
+        Question question=null;
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
@@ -23,16 +20,15 @@ public class DAOAnswer implements DAOInterface<Answer> {
             sql = "select * from Answer where id=" + String.valueOf(id);
             result = stmt.executeQuery(sql);
             while (result.next()) {
-                answer = new Answer(Integer.valueOf(result.getInt("id")),
+                question = new Question(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),
                         Integer.valueOf(result.getInt("position")),
-                        result.getBoolean("correction"),
                         Constant.STATUS.valueOf(result.getString("status")),
-                        Integer.valueOf(result.getInt("question")));
+                        Integer.valueOf(result.getInt("questionnaire")));
             }
             stmt.close();
             conn.close();
-            return answer;
+            return question;
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
@@ -42,8 +38,8 @@ public class DAOAnswer implements DAOInterface<Answer> {
     }
 
     @Override
-    public ArrayList<Answer> selectAll() {
-        ArrayList<Answer> resultList=new ArrayList<>();
+    public ArrayList<Question> selectAll() {
+        ArrayList<Question> resultList=new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
@@ -54,13 +50,12 @@ public class DAOAnswer implements DAOInterface<Answer> {
             sql = "select * from Answer";
             result = stmt.executeQuery(sql);
             while (result.next()) {
-                Answer answer = new Answer(Integer.valueOf(result.getInt("id")),
-                        result.getString("text"),
-                        Integer.valueOf(result.getInt("position")),
-                        result.getBoolean("correction"),
-                        Constant.STATUS.valueOf(result.getString("status")),
-                        Integer.valueOf(result.getInt("question")));
-                resultList.add(answer);
+                Question question = new Question(Integer.valueOf(result.getInt("id")),
+                    result.getString("text"),
+                    Integer.valueOf(result.getInt("position")),
+                    Constant.STATUS.valueOf(result.getString("status")),
+                    Integer.valueOf(result.getInt("questionnaire")));
+                resultList.add(question);
             }
             stmt.close();
             conn.close();
@@ -73,21 +68,18 @@ public class DAOAnswer implements DAOInterface<Answer> {
         return resultList;
     }
 
-
-
     @Override
-    public void add(Answer answer) {
+    public void add(Question question) {
         Connection conn = null;
         Statement stmt = null;
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO Answer (text, position, correction, question) VALUES " +
-                    "('" + answer.getText() + "', '"
-                    + answer.getPosition() + "', '"
-                    + answer.getCorrection() + "', '"
-                    + answer.getQuestion() + "')";
+            sql = "INSERT INTO Question (text, position, questionnaire) VALUES " +
+                    "('" + question.getText() + "', '"
+                    + question.getPosition() + "', '"
+                    + question.getQuestionnaire() + "')";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -100,19 +92,18 @@ public class DAOAnswer implements DAOInterface<Answer> {
     }
 
     @Override
-    public void update(Answer answer) {
+    public void update(Question question) {
         Connection conn = null;
         Statement stmt = null;
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "UPDATE Answer SET text="+answer.getText()+"'"
-                    +"position='"+answer.getPosition()+"'"
-                    +"correction='"+answer.getCorrection()+"'"
-                    +"status='"+answer.getStatus()+"'"
-                    +"question='"+answer.getQuestion()+"'"
-                    +" WHERE id='"+answer.getId()+"'";
+            sql = "UPDATE Question SET text="+question.getText()+"'"
+                    +"position='"+question.getPosition()+"'"
+                    +"status='"+question.getStatus()+"'"
+                    +"questionnaire='"+question.getQuestionnaire()+"'"
+                    +" WHERE id='"+question.getId()+"'";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -125,14 +116,14 @@ public class DAOAnswer implements DAOInterface<Answer> {
     }
 
     @Override
-    public void delete(Answer answer) {
+    public void delete(Question question) {
         Connection conn = null;
         Statement stmt = null;
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "DELETE FROM Answer WHERE id="+answer.getId();
+            sql = "DELETE FROM Question WHERE id="+question.getId();
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -144,8 +135,8 @@ public class DAOAnswer implements DAOInterface<Answer> {
         }
     }
 
-    public ArrayList<Answer> selectByQuestion(Question question) {
-        ArrayList<Answer> resultList=new ArrayList<>();
+    public ArrayList<Question> selectByQuestionnaire(Questionnaire questionnaire) {
+        ArrayList<Question> resultList=new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
@@ -153,16 +144,15 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "select * from Answer WHERE question='"+question.getId()+"'";
+            sql = "select * from Question WHERE questionnaire='"+questionnaire.getId()+"'";
             result = stmt.executeQuery(sql);
             while (result.next()) {
-                Answer answer = new Answer(Integer.valueOf(result.getInt("id")),
+                Question question = new Question(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),
                         Integer.valueOf(result.getInt("position")),
-                        result.getBoolean("correction"),
                         Constant.STATUS.valueOf(result.getString("status")),
-                        Integer.valueOf(result.getInt("question")));
-                resultList.add(answer);
+                        Integer.valueOf(result.getInt("questionnaire")));
+                resultList.add(question);
             }
             stmt.close();
             conn.close();
@@ -176,4 +166,3 @@ public class DAOAnswer implements DAOInterface<Answer> {
     }
 
 }
-
