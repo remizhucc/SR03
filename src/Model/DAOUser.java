@@ -9,8 +9,41 @@ import java.util.Date;
 
 public class DAOUser implements DAOInterface<User> {
 
+    public User selectByEmail(String email) {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet result;
+        User user=null;
+        try {
+            conn = SQL.getSQLConnection();
+            stmt = conn.createStatement();
+            String sql;
+            sql = "select * from User where email='" + String.valueOf(email)+"'";
+            result = stmt.executeQuery(sql);
+            while (result.next()) {
+                user = new User(Integer.valueOf(result.getInt("id")),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getString("firstName"),
+                        result.getString("lastName"),
+                        result.getString("company"),
+                        result.getString("telephone"),
+                        new Date(result.getTimestamp("dateCreation").getTime()),
+                        Constant.STATUS.valueOf(result.getString("status")),
+                        Constant.USERTYPE.valueOf(result.getString("type")));
 
-    @Override
+            }
+            stmt.close();
+            conn.close();
+            return user;
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public User selectByID(int id) {
         Connection conn = null;
         Statement stmt = null;

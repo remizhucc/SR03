@@ -5,19 +5,64 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>/WEB-INF/pages/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/pages/login.jsp</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>loginAction</servlet-name>
+        <servlet-class>Controller.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginAction</servlet-name>
+        <url-pattern>/action/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>wrongAuthtication</servlet-name>
+        <jsp-file>/WEB-INF/pages/wrongAuthtication.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>wrongAuthtication</servlet-name>
+        <url-pattern>/wrongAuthtication</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>createUser</servlet-name>
+        <jsp-file>/WEB-INF/pages/createUser.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createUser</servlet-name>
+        <url-pattern>/createUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createUserAction</servlet-name>
         <servlet-class>Controller.CreateUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>createUser</servlet-name>
-        <url-pattern>/createuser</url-pattern>
+        <servlet-name>createUserAction</servlet-name>
+        <url-pattern>/action/createuser</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>indexTrainee</servlet-name>
+        <jsp-file>/WEB-INF/pages/indexTrainee.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>indexTrainee</servlet-name>
+        <url-pattern>/indexTrainee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>indexAdmin</servlet-name>
+        <jsp-file>/WEB-INF/pages/indexAdmin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>indexAdmin</servlet-name>
+        <url-pattern>/indexAdmin</url-pattern>
+    </servlet-mapping>
     <!--questionnaire-->
     <servlet>
         <servlet-name>questionnaire</servlet-name>
