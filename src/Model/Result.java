@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Result {
@@ -7,6 +8,7 @@ public class Result {
     private Integer score;
     private Date dateCreation;
     private String trainee;
+    private ArrayList<Answer> answers;
 
     public Result(Integer id, Integer score, Date dateCreation, String trainee){
         this.id = id;
@@ -42,4 +44,13 @@ public class Result {
     public String getTrainee(){ return trainee; }
 
     public void setTrainee(String trainee){this.trainee = trainee;}
+
+    public void setAnswers(ArrayList<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public ArrayList<Answer> getAnswers() {
+
+        return answers;
+    }
 }

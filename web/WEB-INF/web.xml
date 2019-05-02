@@ -12,18 +12,7 @@
     <servlet>
         <servlet-name>createUser</servlet-name>
         <servlet-class>Controller.CreateUser</servlet-class>
-        <!--<init-param>-->
-            <!--<param-name>Name</param-name>-->
-            <!--<param-value>123</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>Age</param-name>-->
-            <!--<param-value>456</param-value>-->
-        <!--</init-param>-->
-        <!--<load-on-startup>8</load-on-startup>-->
     </servlet>
-
-
     <servlet-mapping>
         <servlet-name>createUser</servlet-name>
         <url-pattern>/createuser</url-pattern>
@@ -35,8 +24,8 @@
         <jsp-file>/WEB-INF/pages/questionnaire.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-    <servlet-name>questionnaire</servlet-name>
-    <url-pattern>/questionnaire</url-pattern>
+        <servlet-name>questionnaire</servlet-name>
+        <url-pattern>/questionnaire</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -48,7 +37,6 @@
         <servlet-name>createQuestionnaire</servlet-name>
         <url-pattern>/createquestionnaire</url-pattern>
     </servlet-mapping>
-
 
 
 </web-app>

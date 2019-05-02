@@ -194,6 +194,46 @@ public class DAOResult implements DAOInterface<Result> {
         }
     }
 
-    //add a function : select by user
+    public Result selectByTraineeID(User user){
+        Connection conn = null;
+        Statement stmt = null;
+        Result SQLresult = null;
+        try {
+            conn = SQL.getSQLConnection();
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM result WHERE trainee = "+ user.getId();
+            result = stmt.executeQuery(sql);
+            if (result.next()){
+                SQLresult = new Result(
+                        Integer.valueOf(result.getString("id")),
+                        Integer.valueOf(result.getString("score")),
+                        Date.valueOf(result.getString("dateCreation")),
+                        result.getString("trainee")
+                );
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException se2) {
+                se2.printStackTrace();
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        return SQLresult;
+    }
+
 }
 
