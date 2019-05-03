@@ -144,7 +144,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
         }
     }
 
-    public ArrayList<Answer> selectByQuestion(Question question) {
+    public ArrayList<Answer> selectByQuestionID(Integer id) {
         ArrayList<Answer> resultList=new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
@@ -153,7 +153,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "select * from Answer WHERE question='"+question.getId()+"'";
+            sql = "select * from Answer WHERE question='"+String.valueOf(id)+"'";
             result = stmt.executeQuery(sql);
             while (result.next()) {
                 Answer answer = new Answer(Integer.valueOf(result.getInt("id")),

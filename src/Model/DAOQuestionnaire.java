@@ -8,10 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
-    private ResultSet result;
+
 
     @Override
     public Questionnaire selectByID(int id){
+        ResultSet result;
         Connection conn = null;
         Statement stmt = null;
         Questionnaire questionnaire = null;
@@ -53,6 +54,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
 
     @Override
     public ArrayList<Questionnaire> selectAll() {
+        ResultSet result;
         Connection conn = null;
         Statement stmt = null;
         ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
