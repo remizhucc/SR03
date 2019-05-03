@@ -11,7 +11,8 @@
     <title>Index</title>
 </head>
 <body>
-<form action="http://google.com">
+
+<form action="/questionnaireList" method="post">
     <input type="submit" value="Questionnaire list" />
 </form>
 <form action="http://google.com">

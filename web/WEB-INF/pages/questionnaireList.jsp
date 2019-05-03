@@ -16,9 +16,7 @@
 
 <form action="/createquestionnaire" method="post">
     <label> Create Questionnaire </label>
-    <input type="text" id="subject" name="Questionnaire subject"/>
-    <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Create">
 </form>
 </body>
 </html>

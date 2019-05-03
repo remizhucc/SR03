@@ -5,6 +5,8 @@ import Model.DAOFactory;
 import Model.DAOUser;
 import Model.User;
 
+import javax.servlet.http.HttpSession;
+
 public class AccountHelper {
     public static Boolean isAuthentic(String email,String password){
         User user= DAOFactory.getDAOUser().selectByEmail(email);
@@ -23,5 +25,9 @@ public class AccountHelper {
 
     public static Boolean isAdmin(User user){
         return user.getType()== Constant.USERTYPE.ADMIN;
+    }
+
+    public static Boolean isAdmin(){
+        HttpSession session = req.getSession(true);
     }
 }

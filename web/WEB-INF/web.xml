@@ -66,24 +66,41 @@
     </servlet-mapping>
 
     <!--questionnaire-->
+    <servlet>
+        <servlet-name>questionnaireList</servlet-name>
+        <jsp-file>/WEB-INF/pages/questionnaireList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>questionnaireList</servlet-name>
+        <url-pattern>/questionnaireList</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>createQuestionnaire</servlet-name>
-        <servlet-class>Controller.CreateQuestionnaire</servlet-class>
+        <jsp-file>/WEB-INF/pages/createQuestionnaire.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>createQuestionnaire</servlet-name>
         <url-pattern>/createquestionnaire</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>createQuestionnaireAction</servlet-name>
+        <servlet-class>Controller.CreateQuestionnaire</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createQuestionnaireAction</servlet-name>
+        <url-pattern>/createquestionnaireAction</url-pattern>
+    </servlet-mapping>
+
     <!--question-->
     <servlet>
-        <servlet-name>createQuestionn</servlet-name>
+        <servlet-name>createQuestion</servlet-name>
         <jsp-file>/WEB-INF/pages/createQuestion.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>createQuestionn</servlet-name>
-        <url-pattern>/createQuestionn</url-pattern>
+        <servlet-name>createQuestion</servlet-name>
+        <url-pattern>/createQuestion</url-pattern>
     </servlet-mapping>
 
     <servlet>
