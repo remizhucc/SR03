@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DAOResultAnswer {
-    public void add(Result result,Answer answer){
+    public void add(Integer resultID,Integer answerID){
         Connection conn=null;
         Statement stmt=null;
         try {
@@ -15,8 +15,8 @@ public class DAOResultAnswer {
             stmt = conn.createStatement();
             String sql;
             sql = "INSERT INTO ResultAnswer (result,answer) VALUES ('" + "('"
-                    + result.getId() + "', '"
-                    + answer.getId() + "')";
+                    + String.valueOf(resultID) + "', '"
+                    + String.valueOf(answerID) + "')";
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
@@ -39,7 +39,7 @@ public class DAOResultAnswer {
             }
         }
     }
-    public ArrayList<Answer> selectByResult(Result result){
+    public ArrayList<Answer> selectByResultID(Integer id){
         Connection conn = null;
         Statement stmt = null;
         ResultSet resultSet;
@@ -48,7 +48,7 @@ public class DAOResultAnswer {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "select * from ResultAnswer where result=" + String.valueOf(result.getId());
+            sql = "select * from ResultAnswer where result=" + String.valueOf(id);
             resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
                 Answer answer = new Answer(Integer.valueOf(resultSet.getInt("id")),

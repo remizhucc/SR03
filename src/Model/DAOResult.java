@@ -5,10 +5,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DAOResult implements DAOInterface<Result> {
-    private ResultSet result;
 
     @Override
     public Result selectByID(int id){
+        ResultSet result;
         Connection conn = null;
         Statement stmt = null;
         Result SQLresult = null;
@@ -51,6 +51,7 @@ public class DAOResult implements DAOInterface<Result> {
 
     @Override
     public ArrayList<Result> selectAll() {
+        ResultSet result;
         Connection conn = null;
         Statement stmt = null;
         ArrayList<Result> results = new ArrayList<Result>();
@@ -194,23 +195,26 @@ public class DAOResult implements DAOInterface<Result> {
         }
     }
 
-    public Result selectByTraineeID(User user){
+    public ArrayList<Result> selectByTraineeID(Integer id){
+        ResultSet result;
         Connection conn = null;
         Statement stmt = null;
-        Result SQLresult = null;
+        ArrayList<Result> results = new ArrayList<Result>();
+
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT * FROM result WHERE trainee = "+ user.getId();
+            sql = "SELECT * FROM result WHERE trainee = "+ String.valueOf(id);
             result = stmt.executeQuery(sql);
-            if (result.next()){
-                SQLresult = new Result(
+            while (result.next()){
+                Result SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         Date.valueOf(result.getString("dateCreation")),
                         result.getString("trainee")
                 );
+                results.add(SQLresult);
             }
             stmt.close();
             conn.close();
@@ -232,7 +236,7 @@ public class DAOResult implements DAOInterface<Result> {
                 se.printStackTrace();
             }
         }
-        return SQLresult;
+        return results;
     }
 
 }
