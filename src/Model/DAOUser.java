@@ -44,7 +44,7 @@ public class DAOUser implements DAOInterface<User> {
         return null;
     }
 
-    public User selectByID(int id) {
+    public User selectByID(Integer id) {
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
