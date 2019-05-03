@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class DAOResult implements DAOInterface<Result> {
 
     @Override
-    public Result selectByID(int id){
+    public Result selectByID(Integer id){
         ResultSet result;
         Connection conn = null;
         Statement stmt = null;

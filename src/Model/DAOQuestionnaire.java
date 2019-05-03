@@ -11,7 +11,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
 
 
     @Override
-    public Questionnaire selectByID(int id){
+    public Questionnaire selectByID(Integer id){
         ResultSet result;
         Connection conn = null;
         Statement stmt = null;

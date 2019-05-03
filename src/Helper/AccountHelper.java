@@ -29,8 +29,7 @@ public class AccountHelper {
 
     public static Boolean isAdmin(String type){
         return Constant.USERTYPE.valueOf(type)== Constant.USERTYPE.ADMIN;
+
     }
-    public static Boolean isAdmin(){
-        HttpSession session = req.getSession(true);
-    }
+
 }

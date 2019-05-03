@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class DAOQuestion implements DAOInterface<Question>{
     @Override
-    public Question selectByID(int id) {
+    public Question selectByID(Integer id) {
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
