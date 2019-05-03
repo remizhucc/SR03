@@ -27,7 +27,7 @@ CREATE TABLE `Answer` (
   `text` varchar(100) NOT NULL,
   `position` int(11) NOT NULL,
   `correction` tinyint(1) NOT NULL,
-  `status` enum('active','inactive') DEFAULT 'active',
+  `status` enum('ACTIVE','INACTIVE') DEFAULT 'ACTIVE',
   `question` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-02 14:59:51
+-- Dump completed on 2019-05-03 10:33:52

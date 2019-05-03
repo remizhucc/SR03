@@ -26,7 +26,7 @@ CREATE TABLE `Question` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `text` varchar(500) NOT NULL,
   `position` int(11) NOT NULL,
-  `status` enum('active','inactive') DEFAULT 'active',
+  `status` enum('ACTIVE','INACTIVE') DEFAULT 'ACTIVE',
   `questionnaire` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-02 14:59:52
+-- Dump completed on 2019-05-03 10:33:52

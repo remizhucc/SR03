@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `Questionnaire`;
 CREATE TABLE `Questionnaire` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `subject` varchar(50) NOT NULL,
-  `status` enum('active','inactive') DEFAULT NULL,
+  `status` enum('ACTIVE','INACTIVE') DEFAULT 'ACTIVE',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `subject` (`subject`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-02 14:59:52
+-- Dump completed on 2019-05-03 10:33:53
