@@ -17,6 +17,7 @@
         <url-pattern>/action/login</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>wrongAuthtication</servlet-name>
         <jsp-file>/WEB-INF/pages/wrongAuthtication.jsp</jsp-file>
@@ -63,25 +64,35 @@
         <servlet-name>indexAdmin</servlet-name>
         <url-pattern>/indexAdmin</url-pattern>
     </servlet-mapping>
+
     <!--questionnaire-->
-    <servlet>
-        <servlet-name>questionnaire</servlet-name>
-        <jsp-file>/WEB-INF/pages/questionnaire.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>questionnaire</servlet-name>
-        <url-pattern>/questionnaire</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>createQuestionnaire</servlet-name>
         <servlet-class>Controller.CreateQuestionnaire</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>createQuestionnaire</servlet-name>
         <url-pattern>/createquestionnaire</url-pattern>
     </servlet-mapping>
 
+    <!--question-->
+    <servlet>
+        <servlet-name>createQuestionn</servlet-name>
+        <jsp-file>/WEB-INF/pages/createQuestion.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createQuestionn</servlet-name>
+        <url-pattern>/createQuestionn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createQuestionAction</servlet-name>
+        <servlet-class>Controller.CreateQuestion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createQuestionAction</servlet-name>
+        <url-pattern>/action/createQuestion</url-pattern>
+    </servlet-mapping>
 
 </web-app>
