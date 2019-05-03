@@ -27,7 +27,7 @@ public class AccountHelper {
         return user.getType()== Constant.USERTYPE.ADMIN;
     }
 
-    public static Boolean isAdmin(){
-        HttpSession session = req.getSession(true);
+    public static Boolean isAdmin(HttpSession session){
+
     }
 }
