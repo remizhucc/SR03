@@ -11,7 +11,7 @@
     <title>Error</title>
 </head>
 <body>
-<div>Wrong authentication</div>
+<div>Error</div>
 <form action="/">
     <input type="submit" value="Return" />
 </form>

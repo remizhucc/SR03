@@ -33,10 +33,10 @@ public class Login extends HttpServlet {
                     resp.sendRedirect("/indexTrainee");
                 }
             } else {
-                resp.sendRedirect("/wrongAuthtication");
+                resp.sendRedirect("/error");
             }
         }else {
-            resp.sendRedirect("/wrongAuthtication");
+            resp.sendRedirect("/error");
         }
 
     }

@@ -13,12 +13,12 @@ public class DAOUser implements DAOInterface<User> {
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
-        User user=null;
+        User user = null;
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "select * from User where email='" + String.valueOf(email)+"'";
+            sql = "select * from User where email='" + String.valueOf(email) + "'";
             result = stmt.executeQuery(sql);
             while (result.next()) {
                 user = new User(Integer.valueOf(result.getInt("id")),
@@ -48,12 +48,12 @@ public class DAOUser implements DAOInterface<User> {
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
-        User user=null;
+        User user = null;
         try {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "select * from User where id='" + String.valueOf(id)+"'";
+            sql = "select * from User where id='" + String.valueOf(id) + "'";
             result = stmt.executeQuery(sql);
             while (result.next()) {
                 user = new User(Integer.valueOf(result.getInt("id")),
@@ -81,7 +81,7 @@ public class DAOUser implements DAOInterface<User> {
 
     @Override
     public ArrayList<User> selectAll() {
-        ArrayList<User> resultList=new ArrayList<>();
+        ArrayList<User> resultList = new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;
@@ -124,9 +124,16 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO User (email, firstName, lastName, company, telephone) VALUES " +
-                    "('" + user.getEmail() + "', '" + user.getFirstName() +
-                    "', '" + user.getLastName() + "', '" + user.getCompany() + "','" + user.getTelephone() + "')";
+            sql = "INSERT INTO User (email, password, firstName, lastName, company, telephone, type) VALUES " +
+                    "('"
+                    + user.getEmail() + "', '"
+                    + user.getPassword() + "', '"
+                    + user.getFirstName() + "', '"
+                    + user.getLastName() + "', '"
+                    + user.getCompany() + "','"
+                    + user.getTelephone() + "','"
+                    + user.getType() +
+                    "')";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -146,15 +153,15 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "UPDATE User SET email='"+user.getEmail()+"'"
-                    +"password='"+user.getPassword()+"'"
-                    +"firstName='"+user.getFirstName()+"'"
-                    +"lastName='"+user.getLastName()+"'"
-                    +"company='"+user.getCompany()+"'"
-                    +"telephone='"+user.getTelephone()+"'"
-                    +"status='"+user.getStatus().toString()+"'"
-                    +"type='"+user.getType().toString()+"'"
-                    +" WHERE id='"+user.getId()+"'";
+            sql = "UPDATE User SET email='" + user.getEmail() + "'"
+                    + "password='" + user.getPassword() + "'"
+                    + "firstName='" + user.getFirstName() + "'"
+                    + "lastName='" + user.getLastName() + "'"
+                    + "company='" + user.getCompany() + "'"
+                    + "telephone='" + user.getTelephone() + "'"
+                    + "status='" + user.getStatus().toString() + "'"
+                    + "type='" + user.getType().toString() + "'"
+                    + " WHERE id='" + user.getId() + "'";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -174,7 +181,7 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "DELETE FROM User WHERE id='"+user.getId()+"'";
+            sql = "DELETE FROM User WHERE id='" + user.getId() + "'";
             stmt.executeUpdate(sql);
 
             stmt.close();

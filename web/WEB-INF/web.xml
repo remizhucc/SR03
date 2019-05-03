@@ -18,12 +18,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>wrongAuthtication</servlet-name>
-        <jsp-file>/WEB-INF/pages/wrongAuthtication.jsp</jsp-file>
+        <servlet-name>error</servlet-name>
+        <jsp-file>/WEB-INF/pages/error.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>wrongAuthtication</servlet-name>
-        <url-pattern>/wrongAuthtication</url-pattern>
+        <servlet-name>error</servlet-name>
+        <url-pattern>/error</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -42,7 +42,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>createUserAction</servlet-name>
-        <url-pattern>/action/createuser</url-pattern>
+        <url-pattern>/action/createUser</url-pattern>
     </servlet-mapping>
 
 

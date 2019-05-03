@@ -14,7 +14,7 @@
 </head>
 <body>
 <div>Create User</div>
-<form action="/action/createuser" method="post">
+<form action="/action/createUser" method="post">
     <label> First name </label>
     <input type="text" id="frname" name="User first name"/>
     <br>
@@ -32,6 +32,13 @@
     <br>
     <label> Telephone </label>
     <input type="number" id="tel" name="User telephone"/>
+    <br>
+    <input type="radio" id="typeChoice1" name="User type" value="ADMIN">
+    <label for="typeChoice1">Administrator</label>
+
+    <input type="radio" id="typeChoice2" name="User type" value="TRAINEE">
+    <label for="typeChoice2">Trainee</label>
+
     <br>
     <input type="submit" value="Submit">
 </form>

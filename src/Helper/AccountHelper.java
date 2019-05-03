@@ -11,6 +11,11 @@ public class AccountHelper {
         return user.getPassword().equals(password);
     }
 
+    public static Boolean isEmailExisted(String email){
+        User user= DAOFactory.getDAOUser().selectByEmail(email);
+        return user!=null;
+    }
+
     public static User getUserInformationByEmail(String email){
         User user= DAOFactory.getDAOUser().selectByEmail(email);
         return user;
