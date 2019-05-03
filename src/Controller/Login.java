@@ -1,5 +1,6 @@
 package Controller;
 
+import Helper.AccountHelper;
 import Model.Constant;
 import Model.DAOUser;
 import Model.User;
@@ -16,9 +17,8 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("User email");
         String password = req.getParameter("User password");
-        DAOUser daoUser=new DAOUser();
-        User user=daoUser.selectByEmail(email);
-        if(user!=null) {
+        if(AccountHelper.isAuthentic(email,password)) {
+            User user=AccountHelper.getUserInformationByEmail(email);
             if (user.getPassword().equals(password)) {
                 HttpSession session = req.getSession(true);
                 session.setAttribute("id", user.getId());
@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("lastName", user.getLastName());
                 session.setAttribute("type", user.getType());
 
-                if (user.getType() == Constant.USERTYPE.ADMIN) {
+                if (AccountHelper.isAdmin(user)) {
                     resp.sendRedirect("/indexAdmin");
                 } else {
                     resp.sendRedirect("/indexTrainee");
