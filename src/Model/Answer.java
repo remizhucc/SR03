@@ -1,6 +1,8 @@
 package Model;
 
-public class Answer {
+import java.io.Serializable;
+
+public class Answer implements Serializable {
     private Integer id;
     private String text;
     private Integer position;
@@ -8,6 +10,9 @@ public class Answer {
     private Constant.STATUS status;
     private Integer question;
 
+    public Answer(){
+
+    }
     public Answer(String text,Integer position,Boolean correction,Integer question){
         this.text=text;
         this.position=position;

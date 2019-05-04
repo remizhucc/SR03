@@ -28,7 +28,7 @@ public class DAOUser implements DAOInterface<User> {
                         result.getString("lastName"),
                         result.getString("company"),
                         result.getString("telephone"),
-                        new Date(result.getTimestamp("dateCreation").getTime()),
+                        result.getDate("dateCreation"),
                         Constant.STATUS.valueOf(result.getString("status")),
                         Constant.USERTYPE.valueOf(result.getString("type")));
 
@@ -63,7 +63,7 @@ public class DAOUser implements DAOInterface<User> {
                         result.getString("lastName"),
                         result.getString("company"),
                         result.getString("telephone"),
-                        new Date(result.getTimestamp("dateCreation").getTime()),
+                        result.getDate("dateCreation"),
                         Constant.STATUS.valueOf(result.getString("status")),
                         Constant.USERTYPE.valueOf(result.getString("type")));
 
@@ -99,7 +99,7 @@ public class DAOUser implements DAOInterface<User> {
                         result.getString("lastName"),
                         result.getString("company"),
                         result.getString("telephone"),
-                        new Date(result.getTimestamp("dateCreation").getTime()),
+                        result.getDate("dateCreation"),
                         Constant.STATUS.valueOf(result.getString("status")),
                         Constant.USERTYPE.valueOf(result.getString("type")));
 

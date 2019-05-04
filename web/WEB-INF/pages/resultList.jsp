@@ -8,9 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Result list</title>
 </head>
 <body>
-
+<table>
+    <c:forEach var="result" items="${resultList}">
+        <tr>
+            <td>
+                <c:out value="${result.getId()}"/>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

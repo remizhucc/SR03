@@ -1,6 +1,8 @@
 package Model;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
     private Integer id;
     private String text;
     private Integer position;
@@ -8,6 +10,9 @@ public class Question {
     private Integer questionnaire;
 
 
+    public Question() {
+
+    }
     public Question(String text) {
         this.text = text;
     }

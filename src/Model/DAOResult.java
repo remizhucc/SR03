@@ -22,7 +22,7 @@ public class DAOResult implements DAOInterface<Result> {
                 SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
-                        Date.valueOf(result.getString("dateCreation")),
+                        result.getDate("dateCreation"),
                         result.getString("trainee")
                         );
             }
@@ -65,7 +65,7 @@ public class DAOResult implements DAOInterface<Result> {
                 Result SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
-                        Date.valueOf(result.getString("dateCreation")),
+                        result.getDate("dateCreation"),
                         result.getString("trainee")
                 );
                 results.add(SQLresult);
@@ -211,7 +211,7 @@ public class DAOResult implements DAOInterface<Result> {
                 Result SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
-                        Date.valueOf(result.getString("dateCreation")),
+                        result.getDate("dateCreation"),
                         result.getString("trainee")
                 );
                 results.add(SQLresult);

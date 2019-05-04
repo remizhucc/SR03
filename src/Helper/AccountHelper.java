@@ -31,5 +31,8 @@ public class AccountHelper {
         return Constant.USERTYPE.valueOf(type)== Constant.USERTYPE.ADMIN;
 
     }
+    public static Boolean isAdmin(Constant.USERTYPE user){
+        return user== Constant.USERTYPE.ADMIN;
+    }
 
 }
