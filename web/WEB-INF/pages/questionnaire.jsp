@@ -9,29 +9,35 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<jsp:useBean id="questionnaire" class = "Model.Questionnaire" scope="session" ></jsp:useBean>
 <head>
-    <title>Questionnaire list</title>
+    <title>
+        <jsp:getProperty name="questionnaire" property="subject"/>
+    </title>
 </head>
 <body>
-<div>Questionnaire List</div>
 
+<div>
+    <jsp:getProperty name="questionnaire" property="subject"/>
+</div>
 <%
     if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
 %>
-<form action="/createquestionnaire" method="post">
-    <label> Create Questionnaire </label>
+<form action="/createquestion" method="post">
+    <label> Create New Question </label>
     <input type="submit" value="Create">
 </form>
 <%
     }
 %>
 
+<div>Questionn List</div>
 
 <table>
 
     <tr>
         <td>
-            Questionnaire Id
+            Questionn Id
         </td>
         <td>
             Subject
@@ -46,27 +52,27 @@
             }
         %>
     </tr>
-    <c:forEach var="questionnaire" items="${questionnaireList}">
+    <c:forEach var="question" items="${questionList}">
 
         <tr>
             <td>
-                <c:out value="${questionnaire.getId()}"/>
+                <c:out value="${question.getId()}"/>
             </td>
             <td>
-                <c:out value="${questionnaire.getSubject()}"/>
+                <c:out value="${question.getText()}"/>
             </td>
             <%
                 if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
             %>
             <td>
-                <c:out value="${questionnaire.getStatus()}"/>
+                <c:out value="${question.getStatus()}"/>
             </td>
             <%
                 }
             %>
             <td>
-                <form action="/questionnaire" method="post">
-                    <input type="hidden" name="questionnaireId" value="${questionnaire.getId()}"/>
+                <form action="/question" method="post">
+                    <input type="hidden" name="resultId" value="${questionnaire.getId()}"/>
                     <input type="submit" value="Enter"/>
                 </form>
             </td>

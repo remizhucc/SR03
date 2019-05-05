@@ -13,15 +13,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div>Create Question</div>
-<form action="/createQuestion" method="post">
-    <input type="submit" value="CreateQuestion" />
-</form>
 <form action="/action/createquestionnaire" method="post">
     <label> Subject Of Questionnaire </label>
     <input type="text" id="subject" name="Questionnaire subject"/>
     <br>
     <input type="submit" value="Submit">
+</form>
+
+<div>Create Question</div>
+<form action="/createQuestion" method="post">
+    <input type="text" id="Questionnaire" name="Questionnaire" value=""/>
+    <input type="submit" value="CreateQuestion" />
 </form>
 </body>
 </html>

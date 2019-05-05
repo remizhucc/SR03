@@ -68,6 +68,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>questionnaire</servlet-name>
+        <servlet-class>Controller.DisplayQuestionnaire</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>questionnaire</servlet-name>
+        <url-pattern>/questionnaire</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>createQuestionnaire</servlet-name>
         <jsp-file>/WEB-INF/pages/createQuestionnaire.jsp</jsp-file>
     </servlet>

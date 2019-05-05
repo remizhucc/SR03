@@ -14,7 +14,7 @@
 <div>Create Question</div>
 <form action="/action/createquestion" method="post">
     <label> Subject </label>
-    <input type="text" id="subject" name="Questionn subject"/>
+    <input type="text" id="subject" name="Question subject"/>
     <br>
     <label> Answer1 </label>
     <input type="text" id="Answer1" name="Answer1"/>
@@ -28,6 +28,8 @@
     <label> Answer4 </label>
     <input type="text" id="Answer4" name="Answer4"/>
     <br>
+    <label>Questionnaire</label>
+    <input type="text" id="Questionnaire" name="Questionnaire" value="<%= request.getParameter("Questionnaire") %>">
     <input type="submit" value="Submit">
 </form>
 </body>

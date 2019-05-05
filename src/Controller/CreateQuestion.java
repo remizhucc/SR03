@@ -1,5 +1,8 @@
 package Controller;
 
+import Helper.AccountHelper;
+import Model.DAOFactory;
+import Model.DAOQuestion;
 import Model.Question;
 import Model.SQL;
 
@@ -7,8 +10,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.sql.*;
 
@@ -16,6 +21,32 @@ import java.sql.*;
 public class CreateQuestion extends HttpServlet {
     private static Hashtable<Integer, Question> QuestionsTable = new Hashtable<Integer, Question>();
 
+
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        if (!AccountHelper.isEmailExisted(req.getParameter("Question subject"))) {
+//            Question newQuestion = new Question(
+//                    req.getParameter("Answer1"),
+//                    req.getParameter("Answer1"),
+//                    req.getParameter("Answer1"),
+//                    req.getParameter("Answer1")
+//            );
+//            DAOQuestion daoQuestion = new DAOQuestion();
+//            daoQuestion.add(newQuestion);
+//
+//
+//            //go to QuestionList
+//            HttpSession session = req.getSession(true);
+//            ArrayList<Question> QuestionList;
+//            QuestionList = DAOFactory.getDAOQuestion().selectAll();
+//            req.setAttribute("QuestionList", QuestionList);
+//            req.getRequestDispatcher("/WEB-INF/pages/QuestionList.jsp").forward(req, resp);
+//
+//
+//        } else {
+//            resp.sendRedirect("/error");
+//        }
+//    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * * methods.      *
