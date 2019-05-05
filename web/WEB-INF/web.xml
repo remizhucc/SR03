@@ -60,7 +60,7 @@
     <!--questionnaire-->
     <servlet>
         <servlet-name>questionnaireList</servlet-name>
-        <jsp-file>/WEB-INF/pages/questionnaireList.jsp</jsp-file>
+        <servlet-class>Controller.DisplayQuestionnaireList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>questionnaireList</servlet-name>
