@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String email;
     private String password;
@@ -13,6 +14,9 @@ public class User {
     private Date dateCreation;
     private Constant.STATUS status;
     private Constant.USERTYPE type;
+
+    public User(){
+    }
 
     public User(String email,String password,String firstName,String lastName,String company,String telephone,String type){
         this.email=email;

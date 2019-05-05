@@ -1,6 +1,7 @@
 package Controller;
 
 import Helper.AccountHelper;
+import Model.Constant;
 import Model.DAOFactory;
 import Model.Result;
 
@@ -17,13 +18,13 @@ public class DisplayResultList extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         ArrayList<Result> resultList;
-        if (AccountHelper.isAdmin((String)session.getAttribute("type"))) {
+        if (AccountHelper.isAdmin((Constant.USERTYPE) session.getAttribute("type"))) {
             resultList=DAOFactory.getDAOResult().selectAll();
         }else{
             resultList=DAOFactory.getDAOResult().selectByTraineeID((Integer) session.getAttribute("id"));
         }
         req.setAttribute("resultList", resultList);
-        getServletContext().getRequestDispatcher("/WEB-INF/pages/resultList.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/resultList.jsp").forward(req, resp);
 
     }
 }

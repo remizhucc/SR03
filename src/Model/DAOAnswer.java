@@ -11,7 +11,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
 
 
     @Override
-    public Answer selectByID(int id) {
+    public Answer selectByID(Integer id) {
         Connection conn = null;
         Statement stmt = null;
         ResultSet result;

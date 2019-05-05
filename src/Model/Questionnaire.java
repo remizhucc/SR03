@@ -1,18 +1,18 @@
 package Model;
 
+import java.io.Serializable;
+
 import static Model.Constant.STATUS.ACTIVE;
 
-public class Questionnaire {
+public class Questionnaire implements Serializable {
     private Integer id;
     private String subject;
     private Constant.STATUS status;
 
-    public void Questionnaire() {
-    	this.id = null;
-    	this.subject = null;
-    	status = ACTIVE;
+    public Questionnaire() {
+
     }
-    
+
     public Questionnaire(String subject) {
     	this.subject = subject;
     }

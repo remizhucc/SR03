@@ -17,9 +17,10 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("User email");
         String password = req.getParameter("User password");
-        if(AccountHelper.isAuthentic(email,password)) {
-            User user=AccountHelper.getUserInformationByEmail(email);
+        if (AccountHelper.isAuthentic(email, password)) {
+            User user = AccountHelper.getUserInformationByEmail(email);
             if (user.getPassword().equals(password)) {
+                req.getSession(false).invalidate();
                 HttpSession session = req.getSession(true);
                 session.setAttribute("id", user.getId());
                 session.setAttribute("email", user.getEmail());
@@ -27,15 +28,11 @@ public class Login extends HttpServlet {
                 session.setAttribute("lastName", user.getLastName());
                 session.setAttribute("type", user.getType());
 
-                if (AccountHelper.isAdmin(user)) {
-                    resp.sendRedirect("/indexAdmin");
-                } else {
-                    resp.sendRedirect("/indexTrainee");
-                }
+                resp.sendRedirect("/index");
             } else {
                 resp.sendRedirect("/error");
             }
-        }else {
+        } else {
             resp.sendRedirect("/error");
         }
 

@@ -47,28 +47,20 @@
     </servlet-mapping>
 
 
-    <servlet>
-        <servlet-name>indexTrainee</servlet-name>
-        <jsp-file>/WEB-INF/pages/indexTrainee.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>indexTrainee</servlet-name>
-        <url-pattern>/indexTrainee</url-pattern>
-    </servlet-mapping>
 
     <servlet>
-        <servlet-name>indexAdmin</servlet-name>
-        <jsp-file>/WEB-INF/pages/indexAdmin.jsp</jsp-file>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/WEB-INF/pages/index.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>indexAdmin</servlet-name>
-        <url-pattern>/indexAdmin</url-pattern>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
     <!--questionnaire-->
     <servlet>
         <servlet-name>questionnaireList</servlet-name>
-        <jsp-file>/WEB-INF/pages/questionnaireList.jsp</jsp-file>
+        <servlet-class>Controller.DisplayQuestionnaireList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>questionnaireList</servlet-name>
@@ -83,6 +75,8 @@
         <servlet-name>createQuestionnaire</servlet-name>
         <url-pattern>/createquestionnaire</url-pattern>
     </servlet-mapping>
+
+
 
     <servlet>
         <servlet-name>createQuestionnaireAction</servlet-name>
@@ -111,5 +105,22 @@
         <servlet-name>createQuestionAction</servlet-name>
         <url-pattern>/action/createQuestion</url-pattern>
     </servlet-mapping>
+
+
+
+    <!--result-->
+    <servlet>
+        <servlet-name>resultList</servlet-name>
+        <servlet-class>Controller.DisplayResultList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>resultList</servlet-name>
+        <url-pattern>/resultList</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
 
 </web-app>
