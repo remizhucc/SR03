@@ -77,14 +77,13 @@
     </servlet-mapping>
 
 
-
     <servlet>
         <servlet-name>createQuestionnaireAction</servlet-name>
         <servlet-class>Controller.CreateQuestionnaire</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createQuestionnaireAction</servlet-name>
-        <url-pattern>/createquestionnaireAction</url-pattern>
+        <url-pattern>/action/createquestionnaire</url-pattern>
     </servlet-mapping>
 
     <!--question-->

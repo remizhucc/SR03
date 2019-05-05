@@ -10,17 +10,17 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Driver;
 public class SQL {
 
-//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-//    private static final String URL = "jdbc:mysql://localhost:3306/SR03?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8";
-//
-//    private static final String USER = "root";
-//    private static final String PASSWORD = "jdh19960114";
-
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/SR03";
+    private static final String URL = "jdbc:mysql://localhost:3306/SR03?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8";
 
-    private static final String USER = "SR03";
-    private static final String PASSWORD = "SR03";
+    private static final String USER = "root";
+    private static final String PASSWORD = "jdh19960114";
+
+//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://localhost:3306/SR03";
+//
+//    private static final String USER = "SR03";
+//    private static final String PASSWORD = "SR03";
 
     public static Connection getSQLConnection() {
         try {
