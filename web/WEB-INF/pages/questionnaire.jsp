@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<jsp:useBean id="questionnaire" class = "Model.Questionnaire" scope="session" ></jsp:useBean>
+<jsp:useBean id="questionnaire" class="Model.Questionnaire" scope="session"></jsp:useBean>
 <head>
     <title>
         <jsp:getProperty name="questionnaire" property="subject"/>
@@ -33,57 +33,74 @@
 
 <div>Questionn List</div>
 
-<table>
-
-    <tr>
-        <td>
-            Questionn Id
-        </td>
-        <td>
-            Subject
-        </td>
-        <%
-            if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
-        %>
-        <td>
-            Status
-        </td>
-        <%
-            }
-        %>
-    </tr>
-    <c:forEach var="question" items="${questionList}">
-
+<form action="/commit" method="post">
+    <table>
         <tr>
             <td>
-                <c:out value="${question.getId()}"/>
+                Questionn Id
             </td>
             <td>
-                <c:out value="${question.getText()}"/>
+                Subject
             </td>
             <%
                 if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
             %>
             <td>
-                <c:out value="${question.getStatus()}"/>
+                Status
             </td>
             <%
                 }
             %>
-            <td>
-                <form action="/question" method="post">
-                    <input type="hidden" name="resultId" value="${questionnaire.getId()}"/>
-                    <input type="submit" value="Enter"/>
-                </form>
-            </td>
-
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach var="question" items="${questionList}">
 
-<form action="/index">
+            <tr>
+                <td>
+                    <c:out value="${question.getId()}"/>
+                </td>
+                <td>
+                    <c:out value="${question.getText()}"/>
+                </td>
+                <%
+                    if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
+                %>
+                <td>
+                    <c:out value="${question.getStatus()}"/>
+                </td>
+                <%
+                    }
+                %>
+                <td>
+                    <form action="/question" method="post">
+                        <input type="hidden" name="resultId" value="${questionnaire.getId()}"/>
+                        <input type="submit" value="Enter"/>
+                    </form>
+                </td>
+
+            </tr>
+            <tr>
+                <input type="radio" id="'${question.getId()}'+'1'" name="${question().getId()}" value="${question().getAnswers().get(0).getId()}">
+                <label for="'${question.getId()}'+'1'">${question().getAnswers().get(0).getText()}</label>
+            </tr>
+
+            <tr>
+                <input type="radio" id="'${question.getId()}'+'2'" name="${question().getId()}" value="${question().getAnswers().get(1).getId()}">
+                <label for="'${question.getId()}'+'2'">${question().getAnswers().get(1).getText()}</label>
+            </tr>
+
+            <tr>
+                <input type="radio" id="'${question.getId()}'+'3'" name="${question().getId()}" value="${question().getAnswers().get(2).getId()}">
+                <label for="'${question.getId()}'+'3'">${question().getAnswers().get(2).getText()}</label>
+            </tr>
+
+            <tr>
+                <input type="radio" id="'${question.getId()}'+'4'" name="${question().getId()}" value="${question().getAnswers().get(3).getId()}">
+                <label for="'${question.getId()}'+'4'">${question().getAnswers().get(3).getText()}</label>
+            </tr>
+        </c:forEach>
+    </table>
+
     <input type="submit" value="Return"/>
 </form>
-
 </body>
 </html>

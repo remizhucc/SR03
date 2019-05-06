@@ -9,11 +9,13 @@ public class Answer implements Serializable {
     private Boolean correction;
     private Constant.STATUS status;
     private Integer question;
-
+    private Boolean checked;
     public Answer(){
 
     }
-    public Answer(String text,Integer position,Boolean correction,Integer question){
+
+
+    public Answer(String text, Integer position, Boolean correction, Integer question){
         this.text=text;
         this.position=position;
         this.correction=correction;
@@ -77,4 +79,13 @@ public class Answer implements Serializable {
         this.position = position;
     }
 
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
+    public Boolean getChecked() {
+
+        return checked;
+    }
 }

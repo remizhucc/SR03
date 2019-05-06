@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Question implements Serializable {
     private Integer id;
@@ -8,7 +9,7 @@ public class Question implements Serializable {
     private Integer position;
     private Constant.STATUS status;
     private Integer questionnaire;
-
+    private ArrayList<Answer> answers;
 
     public Question() {
 
@@ -64,5 +65,14 @@ public class Question implements Serializable {
     public Constant.STATUS getStatus() {
 
         return status;
+    }
+
+    public void setAnswers(ArrayList<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public ArrayList<Answer> getAnswers() {
+
+        return answers;
     }
 }
