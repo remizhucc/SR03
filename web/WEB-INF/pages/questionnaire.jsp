@@ -23,8 +23,9 @@
 <%
     if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
 %>
-<form action="/createquestion" method="post">
+<form action="/createQuestion" method="post">
     <label> Create New Question </label>
+    <input type="hidden" name="questionnaireId" value="${questionnaire.getId()}"/>
     <input type="submit" value="Create">
 </form>
 <%
@@ -41,6 +42,9 @@
             </td>
             <td>
                 Subject
+            </td>
+            <td>
+                Answers
             </td>
             <%
                 if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
@@ -61,6 +65,21 @@
                 <td>
                     <c:out value="${question.getText()}"/>
                 </td>
+
+                <td>
+                    <input type="radio" id="'${question.getId()}'+'1'" name="${question.getId()}" value="${question.getAnswers().get(0).getId()}">
+                    <label for="'${question.getId()}'+'1'">${question.getAnswers().get(0).getText()}</label>
+
+                    <input type="radio" id="'${question.getId()}'+'2'" name="${question.getId()}" value="${question.getAnswers().get(1).getId()}">
+                    <label for="'${question.getId()}'+'2'">${question.getAnswers().get(1).getText()}</label>
+
+                    <input type="radio" id="'${question.getId()}'+'3'" name="${question.getId()}" value="${question.getAnswers().get(2).getId()}">
+                    <label for="'${question.getId()}'+'3'">${question.getAnswers().get(2).getText()}</label>
+
+                    <input type="radio" id="'${question.getId()}'+'4'" name="${question.getId()}" value="${question.getAnswers().get(3).getId()}">
+                    <label for="'${question.getId()}'+'4'">${question.getAnswers().get(3).getText()}</label>
+                </td>
+
                 <%
                     if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
                 %>
@@ -72,30 +91,10 @@
                 %>
                 <td>
                     <form action="/question" method="post">
-                        <input type="hidden" name="resultId" value="${questionnaire.getId()}"/>
+                        <input type="hidden" name="questionnaireId" value="${questionnaire.getId()}"/>
                         <input type="submit" value="Enter"/>
                     </form>
                 </td>
-
-            </tr>
-            <tr>
-                <input type="radio" id="'${question.getId()}'+'1'" name="${question().getId()}" value="${question().getAnswers().get(0).getId()}">
-                <label for="'${question.getId()}'+'1'">${question().getAnswers().get(0).getText()}</label>
-            </tr>
-
-            <tr>
-                <input type="radio" id="'${question.getId()}'+'2'" name="${question().getId()}" value="${question().getAnswers().get(1).getId()}">
-                <label for="'${question.getId()}'+'2'">${question().getAnswers().get(1).getText()}</label>
-            </tr>
-
-            <tr>
-                <input type="radio" id="'${question.getId()}'+'3'" name="${question().getId()}" value="${question().getAnswers().get(2).getId()}">
-                <label for="'${question.getId()}'+'3'">${question().getAnswers().get(2).getText()}</label>
-            </tr>
-
-            <tr>
-                <input type="radio" id="'${question.getId()}'+'4'" name="${question().getId()}" value="${question().getAnswers().get(3).getId()}">
-                <label for="'${question.getId()}'+'4'">${question().getAnswers().get(3).getText()}</label>
             </tr>
         </c:forEach>
     </table>

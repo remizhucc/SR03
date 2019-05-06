@@ -83,10 +83,11 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
+            Integer correction = answer.getCorrection()?1:0;
             sql = "INSERT INTO Answer (text, position, correction, question) VALUES " + "('"
                     + answer.getText() + "', '"
                     + answer.getPosition() + "', '"
-                    + answer.getCorrection() + "', '"
+                    + correction + "', '"
                     + answer.getQuestion() + "')";
             stmt.executeUpdate(sql);
 

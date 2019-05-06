@@ -14,8 +14,10 @@ public class Question implements Serializable {
     public Question() {
 
     }
-    public Question(String text) {
+    public Question(String text, Integer position, Integer questionnaire) {
         this.text = text;
+        this.position = position;
+        this.questionnaire = questionnaire;
     }
 
     public Question(Integer id, String text, Integer position, Constant.STATUS status,Integer questionnaire) {
