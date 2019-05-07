@@ -9,18 +9,27 @@ public class Result implements Serializable {
     private Integer score;
     private Date dateCreation;
     private String trainee;
-    private ArrayList<Answer> answers;
+    private String json;
 
     public Result(){
 
     }
-    public Result(Integer id, Integer score, Date dateCreation, String trainee){
+
+    //when create
+    public Result(Integer score, String trainee, String json){
+        this.score = score;
+        this.trainee = trainee;
+        this.json=json;
+    }
+    //when query
+    public Result(Integer id,Integer score, Date dateCreation, String trainee, String json){
         this.id = id;
         this.score = score;
         this.dateCreation = dateCreation;
         this.trainee = trainee;
+        this.json=json;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -49,12 +58,11 @@ public class Result implements Serializable {
 
     public void setTrainee(String trainee){this.trainee = trainee;}
 
-    public void setAnswers(ArrayList<Answer> answers) {
-        this.answers = answers;
+    public String getJson() {
+        return json;
     }
 
-    public ArrayList<Answer> getAnswers() {
-
-        return answers;
+    public void setJson(String json) {
+        this.json = json;
     }
 }

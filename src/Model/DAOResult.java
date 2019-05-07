@@ -23,7 +23,8 @@ public class DAOResult implements DAOInterface<Result> {
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         result.getDate("dateCreation"),
-                        result.getString("trainee")
+                        result.getString("trainee"),
+                        result.getString("json")
                         );
             }
             stmt.close();
@@ -66,7 +67,8 @@ public class DAOResult implements DAOInterface<Result> {
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         result.getDate("dateCreation"),
-                        result.getString("trainee")
+                        result.getString("trainee"),
+                        result.getString("json")
                 );
                 results.add(SQLresult);
             }
@@ -101,9 +103,10 @@ public class DAOResult implements DAOInterface<Result> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO `result` (score,trainee) VALUES ('"+
+            sql = "INSERT INTO `result` (score,trainee,json) VALUES ('"+
                     result.getScore()+"','"+
-                    result.getTrainee() +"')";
+                    result.getTrainee()+"','"+
+                    result.getJson() +"')";
 
             stmt.executeUpdate(sql);
             stmt.close();
@@ -138,6 +141,7 @@ public class DAOResult implements DAOInterface<Result> {
             String sql;
             sql = "UPDATE `result` SET `score` = '"+ result.getScore()+
                     "',`trainee`= '"+ result.getTrainee()+
+                    "',`json`= '"+ result.getJson()+
                     "' WHERE `id` = '" + result.getId() +"'";
             stmt.executeUpdate(sql);
             stmt.close();
@@ -212,7 +216,8 @@ public class DAOResult implements DAOInterface<Result> {
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         result.getDate("dateCreation"),
-                        result.getString("trainee")
+                        result.getString("trainee"),
+                        result.getString("json")
                 );
                 results.add(SQLresult);
             }

@@ -16,7 +16,4 @@ public class DAOFactory {
     public static DAOResult  getDAOResult(){
         return new DAOResult();
     }
-    public static DAOResultAnswer  getDAOResultAnswer(){
-        return new DAOResultAnswer();
-    }
 }

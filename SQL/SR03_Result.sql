@@ -27,9 +27,10 @@ CREATE TABLE `Result` (
   `score` int(11) NOT NULL,
   `dateCreation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `trainee` int(11) NOT NULL,
+  `json` varchar(10000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +39,7 @@ CREATE TABLE `Result` (
 
 LOCK TABLES `Result` WRITE;
 /*!40000 ALTER TABLE `Result` DISABLE KEYS */;
+INSERT INTO `Result` VALUES (1,19,'2019-05-04 15:08:18',1,''),(2,20,'2019-05-04 15:59:27',1,'');
 /*!40000 ALTER TABLE `Result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-03 10:33:53
+-- Dump completed on 2019-05-07 21:56:21

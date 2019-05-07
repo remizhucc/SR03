@@ -126,7 +126,15 @@
         <url-pattern>/resultList</url-pattern>
     </servlet-mapping>
 
-
+    <!--result detail-->
+    <servlet>
+        <servlet-name>resultDetail</servlet-name>
+        <servlet-class>Controller.DisplayResult</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>resultDetail</servlet-name>
+        <url-pattern>/resultDetail</url-pattern>
+    </servlet-mapping>
 
 
 
