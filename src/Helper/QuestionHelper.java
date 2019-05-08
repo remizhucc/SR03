@@ -4,7 +4,7 @@ import Model.Question;
 
 import java.util.ArrayList;
 
-public class questionHelper {
+public class QuestionHelper {
     public static Question getLastQuestionByQuestionnaireId(Integer questionnaireId){
         ArrayList<Question> questions = DAOFactory.getDAOQuestion().selectByQuestionnaireID(questionnaireId);
         questions = SortHelper.sortQuestion(questions);

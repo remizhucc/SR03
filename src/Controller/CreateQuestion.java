@@ -8,15 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
-import java.util.zip.DataFormatException;
 
-import Helper.questionHelper;
+import Helper.QuestionHelper;
 
 
 public class CreateQuestion extends HttpServlet {
@@ -26,7 +23,7 @@ public class CreateQuestion extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int questionnaireId = Integer.parseInt(req.getParameter("questionnaireId"));
         //To get the next index
-        Question lastQuestion = questionHelper.getLastQuestionByQuestionnaireId(questionnaireId);
+        Question lastQuestion = QuestionHelper.getLastQuestionByQuestionnaireId(questionnaireId);
         int index = lastQuestion.getPosition() + 1;
 
         if (!AccountHelper.isEmailExisted(req.getParameter("Question subject"))) {
@@ -39,7 +36,7 @@ public class CreateQuestion extends HttpServlet {
             DAOFactory.getDAOQuestion().add(newQuestion);
 
             //get the question that we just put
-            lastQuestion = questionHelper.getLastQuestionByQuestionnaireId(questionnaireId);
+            lastQuestion = QuestionHelper.getLastQuestionByQuestionnaireId(questionnaireId);
 
             //get correction
             String correction = req.getParameter("Correction");
