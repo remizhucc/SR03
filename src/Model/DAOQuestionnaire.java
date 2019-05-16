@@ -8,43 +8,32 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
 
 
     @Override
-    public Questionnaire selectByID(Integer id){
+    public Questionnaire selectByID(Integer id) {
         ResultSet result;
         Connection conn = null;
         PreparedStatement sqlPrepare;
         Questionnaire questionnaire = null;
         try {
             conn = SQL.getSQLConnection();
-            
+
             String sql;
-            sql = "SELECT * FROM questionnaire WHERE id = "+ id;
-            result = stmt.executeQuery(sql);
-            if (result.next()){
+            sql = "SELECT * FROM questionnaire WHERE id = ?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, id);
+            result = sqlPrepare.executeQuery();
+            if (result.next()) {
                 questionnaire = new Questionnaire(
                         Integer.valueOf(result.getString("id")),
                         result.getString("subject"),
                         Constant.STATUS.valueOf(result.getString("status"))
                 );
             }
-            
+
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
         return questionnaire;
     }
@@ -57,11 +46,12 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
         try {
             conn = SQL.getSQLConnection();
-            
+
             String sql;
             sql = "SELECT * FROM questionnaire";
-            result = stmt.executeQuery(sql);
-            while (result.next()){
+            sqlPrepare = conn.prepareStatement(sql);
+            result = sqlPrepare.executeQuery();
+            while (result.next()) {
                 Questionnaire questionnaire = new Questionnaire(
                         Integer.valueOf(result.getString("id")),
                         result.getString("subject"),
@@ -69,25 +59,12 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
                 );
                 questionnaires.add(questionnaire);
             }
-            
+
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
         return questionnaires;
     }
@@ -98,29 +75,18 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            
+
             String sql;
-            sql = "INSERT INTO Questionnaire (subject) VALUES ('"+ questionnaire.getSubject()+"')";
-            stmt.executeUpdate(sql);
-            
+            sql = "INSERT INTO Questionnaire (subject) VALUES (?)";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setString(1, questionnaire.getSubject());
+            sqlPrepare.executeUpdate();
+
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -130,31 +96,20 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            
+
             String sql;
-            sql = "UPDATE `questionnaire` SET `subject`='"+ questionnaire.getSubject() +
-                    "',`status`= `"+ questionnaire.getStatus() +
-                    "` WHERE `id`='"+ questionnaire.getId() +"'";
-            stmt.executeUpdate(sql);
-            
+            sql = "UPDATE `questionnaire` SET `subject`=?,status`=? WHERE `id`=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setString(1, questionnaire.getSubject());
+            sqlPrepare.setString(2, questionnaire.getStatus().toString());
+            sqlPrepare.setInt(3, questionnaire.getId());
+            sqlPrepare.executeUpdate();
+
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -164,30 +119,18 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            
+
             String sql;
-            sql = "DELETE FROM `questionnaire`\n" +
-                    "WHERE `id` = '"+questionnaire.getId()+"'";
-            stmt.executeUpdate(sql);
-            
+            sql = "DELETE FROM `questionnaire` WHERE `id` = ?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, questionnaire.getId());
+            sqlPrepare.executeUpdate();
+
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 }

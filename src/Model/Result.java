@@ -8,7 +8,7 @@ public class Result implements Serializable {
     private Integer id;
     private Integer score;
     private Date dateCreation;
-    private String trainee;
+    private Integer trainee;
     private String json;
 
     public Result(){
@@ -16,13 +16,13 @@ public class Result implements Serializable {
     }
 
     //when create
-    public Result(Integer score, String trainee, String json){
+    public Result(Integer score, Integer trainee, String json){
         this.score = score;
         this.trainee = trainee;
         this.json=json;
     }
     //when query
-    public Result(Integer id,Integer score, Date dateCreation, String trainee, String json){
+    public Result(Integer id,Integer score, Date dateCreation, Integer trainee, String json){
         this.id = id;
         this.score = score;
         this.dateCreation = dateCreation;
@@ -54,9 +54,9 @@ public class Result implements Serializable {
         this.score = score;
     }
 
-    public String getTrainee(){ return trainee; }
+    public Integer getTrainee(){ return trainee; }
 
-    public void setTrainee(String trainee){this.trainee = trainee;}
+    public void setTrainee(Integer trainee){this.trainee = trainee;}
 
     public String getJson() {
         return json;

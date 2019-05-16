@@ -17,7 +17,7 @@ public class DAOUser implements DAOInterface<User> {
             sql = "SELECT * FROM User WHERE email= ? ";
             sqlPrepare=conn.prepareStatement(sql);
             sqlPrepare.setString(1,String.valueOf(email));
-            result = sqlPrepare.executeQuery(sql);
+            result = sqlPrepare.executeQuery();
             while (result.next()) {
                 user = new User(Integer.valueOf(result.getInt("id")),
                         result.getString("email"),

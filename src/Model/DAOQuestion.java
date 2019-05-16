@@ -14,8 +14,10 @@ public class DAOQuestion implements DAOInterface<Question>{
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "select * from Answer where id=" + String.valueOf(id);
-            result = stmt.executeQuery(sql);
+            sql = "select * from Answer where id=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, id);
+            result = sqlPrepare.executeQuery();
             while (result.next()) {
                 question = new Question(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),
@@ -45,7 +47,8 @@ public class DAOQuestion implements DAOInterface<Question>{
             
             String sql;
             sql = "select * from Answer";
-            result = stmt.executeQuery(sql);
+            sqlPrepare = conn.prepareStatement(sql);
+            result = sqlPrepare.executeQuery();
             while (result.next()) {
                 Question question = new Question(Integer.valueOf(result.getInt("id")),
                     result.getString("text"),
@@ -73,13 +76,14 @@ public class DAOQuestion implements DAOInterface<Question>{
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "INSERT INTO Question (text, position, questionnaire) VALUES " +
-                    "('" + question.getText() + "', '"
-                    + question.getPosition() + "', '"
-                    + question.getQuestionnaire() + "')";
-            stmt.executeUpdate(sql);
+            sql = "INSERT INTO Question (text, position, questionnaire) VALUES (?,?,?)";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setString(1, question.getText());
+            sqlPrepare.setInt(2, question.getPosition());
+            sqlPrepare.setInt(3, question.getQuestionnaire());
+            sqlPrepare.executeUpdate();
 
-            
+
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -96,12 +100,14 @@ public class DAOQuestion implements DAOInterface<Question>{
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "UPDATE Question SET text="+question.getText()+"'"
-                    +"position='"+question.getPosition()+"'"
-                    +"status='"+question.getStatus()+"'"
-                    +"questionnaire='"+question.getQuestionnaire()+"'"
-                    +" WHERE id='"+question.getId()+"'";
-            stmt.executeUpdate(sql);
+            sql = "UPDATE Question SET text=?,position=?,status=?,questionnaire=? WHERE id=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setString(1, question.getText());
+            sqlPrepare.setInt(2, question.getPosition());
+            sqlPrepare.setString(3, question.getStatus().toString());
+            sqlPrepare.setInt(4, question.getQuestionnaire());
+            sqlPrepare.setInt(5, question.getId());
+            sqlPrepare.executeUpdate();
 
             
             conn.close();
@@ -120,8 +126,10 @@ public class DAOQuestion implements DAOInterface<Question>{
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "DELETE FROM Question WHERE id="+question.getId();
-            stmt.executeUpdate(sql);
+            sql = "DELETE FROM Question WHERE id=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, question.getId());
+            sqlPrepare.executeUpdate();
 
             
             conn.close();
@@ -141,8 +149,10 @@ public class DAOQuestion implements DAOInterface<Question>{
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "select * from Question WHERE questionnaire='"+String.valueOf(id)+"'";
-            result = stmt.executeQuery(sql);
+            sql = "select * from Question WHERE questionnaire=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, id);
+            result=sqlPrepare.executeQuery();
             while (result.next()) {
                 Question question = new Question(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),

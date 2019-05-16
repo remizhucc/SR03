@@ -17,8 +17,10 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "select * from Answer where id=" + String.valueOf(id);
-            result = stmt.executeQuery(sql);
+            sql = "select * from Answer where id= ?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, id);
+            result = sqlPrepare.executeQuery();
             while (result.next()) {
                 answer = new Answer(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),
@@ -49,7 +51,8 @@ public class DAOAnswer implements DAOInterface<Answer> {
             
             String sql;
             sql = "select * from Answer";
-            result = stmt.executeQuery(sql);
+            sqlPrepare = conn.prepareStatement(sql);
+            result = sqlPrepare.executeQuery();
             while (result.next()) {
                 Answer answer = new Answer(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),
@@ -80,14 +83,13 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            Integer correction = answer.getCorrection()?1:0;
-            sql = "INSERT INTO Answer (text, position, correction, question) VALUES " + "('"
-                    + answer.getText() + "', '"
-                    + answer.getPosition() + "', '"
-                    + correction + "', '"
-                    + answer.getQuestion() + "')";
-            stmt.executeUpdate(sql);
-
+            sql = "INSERT INTO Answer (text, position, correction, question) VALUES (?,?,?,?)";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setString(1, answer.getText());
+            sqlPrepare.setInt(2, answer.getPosition());
+            sqlPrepare.setBoolean(3, answer.getCorrection());
+            sqlPrepare.setInt(4, answer.getQuestion());
+            sqlPrepare.executeUpdate();
             
             conn.close();
         } catch (SQLException se) {
@@ -105,13 +107,15 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "UPDATE Answer SET text="+answer.getText()+"'"
-                    +"position='"+answer.getPosition()+"'"
-                    +"correction='"+answer.getCorrection()+"'"
-                    +"status='"+answer.getStatus()+"'"
-                    +"question='"+answer.getQuestion()+"'"
-                    +" WHERE id='"+answer.getId()+"'";
-            stmt.executeUpdate(sql);
+            sql = "UPDATE Answer SET text= ? ,position=?,correction=?,status=?,question=? WHERE id=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setString(1, answer.getText());
+            sqlPrepare.setInt(2, answer.getPosition());
+            sqlPrepare.setBoolean(3, answer.getCorrection());
+            sqlPrepare.setString(4, answer.getStatus().toString());
+            sqlPrepare.setInt(5, answer.getQuestion());
+            sqlPrepare.setInt(6, answer.getId());
+            sqlPrepare.executeUpdate();
 
             
             conn.close();
@@ -130,8 +134,10 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "DELETE FROM Answer WHERE id="+answer.getId();
-            stmt.executeUpdate(sql);
+            sql = "DELETE FROM Answer WHERE id=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, answer.getId());
+            sqlPrepare.executeUpdate();
 
             
             conn.close();
@@ -151,8 +157,10 @@ public class DAOAnswer implements DAOInterface<Answer> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "select * from Answer WHERE question='"+String.valueOf(id)+"'";
-            result = stmt.executeQuery(sql);
+            sql = "select * from Answer WHERE question=?";
+            sqlPrepare = conn.prepareStatement(sql);
+            sqlPrepare.setInt(1, id);
+            result=sqlPrepare.executeQuery();
             while (result.next()) {
                 Answer answer = new Answer(Integer.valueOf(result.getInt("id")),
                         result.getString("text"),

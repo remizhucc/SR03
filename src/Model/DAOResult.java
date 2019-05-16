@@ -19,13 +19,13 @@ public class DAOResult implements DAOInterface<Result> {
             sql = "SELECT * FROM result WHERE id =?";
             sqlPrepare=conn.prepareStatement(sql);
             sqlPrepare.setInt(1,id);
-            result = sqlPrepare.executeQuery(sql);
+            result = sqlPrepare.executeQuery();
             if (result.next()){
                 SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         result.getDate("dateCreation"),
-                        result.getString("trainee"),
+                        result.getInt("trainee"),
                         result.getString("json")
                         );
             }
@@ -50,13 +50,14 @@ public class DAOResult implements DAOInterface<Result> {
             
             String sql;
             sql = "SELECT * FROM result";
-            result = stmt.executeQuery(sql);
+            sqlPrepare=conn.prepareStatement(sql);
+            result = sqlPrepare.executeQuery(sql);
             while (result.next()){
                 Result SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         result.getDate("dateCreation"),
-                        result.getString("trainee"),
+                        result.getInt("trainee"),
                         result.getString("json")
                 );
                 results.add(SQLresult);
@@ -67,19 +68,6 @@ public class DAOResult implements DAOInterface<Result> {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
         return results;
     }
@@ -92,31 +80,17 @@ public class DAOResult implements DAOInterface<Result> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "INSERT INTO `result` (score,trainee,json) VALUES ('"+
-                    result.getScore()+"','"+
-                    result.getTrainee()+"','"+
-                    result.getJson() +"')";
-
-            stmt.executeUpdate(sql);
-            
+            sql = "INSERT INTO `result` (score,trainee,json) VALUES (?,?,?)";
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setInt(1,result.getScore());
+            sqlPrepare.setInt(2,result.getTrainee());
+            sqlPrepare.setString(3,result.getJson());
+            sqlPrepare.executeQuery();
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -128,30 +102,21 @@ public class DAOResult implements DAOInterface<Result> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "UPDATE `result` SET `score` = '"+ result.getScore()+
-                    "',`trainee`= '"+ result.getTrainee()+
-                    "',`json`= '"+ result.getJson()+
-                    "' WHERE `id` = '" + result.getId() +"'";
-            stmt.executeUpdate(sql);
+            sql = "UPDATE `result` SET `score` = ?,`trainee`= ?,`json`= ?  WHERE `id` = ?";
+
+
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setInt(1,result.getScore());
+            sqlPrepare.setInt(2,result.getTrainee());
+            sqlPrepare.setString(3,result.getJson());
+            sqlPrepare.setInt(4,result.getId());
+            sqlPrepare.executeUpdate();
             
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -163,28 +128,16 @@ public class DAOResult implements DAOInterface<Result> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "DELETE FROM `result`\n" +
-                    "WHERE `id` = '"+result.getId()+"'";
-            stmt.executeUpdate(sql);
+            sql = "DELETE FROM `result` WHERE `id` = ?";
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setInt(1,result.getId());
+            sqlPrepare.executeUpdate();
             
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -198,14 +151,16 @@ public class DAOResult implements DAOInterface<Result> {
             conn = SQL.getSQLConnection();
             
             String sql;
-            sql = "SELECT * FROM result WHERE trainee = "+ String.valueOf(id);
-            result = stmt.executeQuery(sql);
+            sql = "SELECT * FROM result WHERE trainee = ?";
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setInt(1,id);
+            result = sqlPrepare.executeQuery();
             while (result.next()){
                 Result SQLresult = new Result(
                         Integer.valueOf(result.getString("id")),
                         Integer.valueOf(result.getString("score")),
                         result.getDate("dateCreation"),
-                        result.getString("trainee"),
+                        result.getInt("trainee"),
                         result.getString("json")
                 );
                 results.add(SQLresult);
@@ -216,19 +171,6 @@ public class DAOResult implements DAOInterface<Result> {
             se.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (stmt != null)
-                    
-            } catch (SQLException se2) {
-                se2.printStackTrace();
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
         return results;
     }
