@@ -1,10 +1,7 @@
 package Model;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
@@ -14,11 +11,11 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
     public Questionnaire selectByID(Integer id){
         ResultSet result;
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         Questionnaire questionnaire = null;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "SELECT * FROM questionnaire WHERE id = "+ id;
             result = stmt.executeQuery(sql);
@@ -29,7 +26,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
                         Constant.STATUS.valueOf(result.getString("status"))
                 );
             }
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -38,7 +35,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         } finally {
             try {
                 if (stmt != null)
-                    stmt.close();
+                    
             } catch (SQLException se2) {
                 se2.printStackTrace();
             }
@@ -56,11 +53,11 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
     public ArrayList<Questionnaire> selectAll() {
         ResultSet result;
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         ArrayList<Questionnaire> questionnaires = new ArrayList<Questionnaire>();
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "SELECT * FROM questionnaire";
             result = stmt.executeQuery(sql);
@@ -72,7 +69,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
                 );
                 questionnaires.add(questionnaire);
             }
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -81,7 +78,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         } finally {
             try {
                 if (stmt != null)
-                    stmt.close();
+                    
             } catch (SQLException se2) {
                 se2.printStackTrace();
             }
@@ -98,14 +95,14 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
     @Override
     public void add(Questionnaire questionnaire) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "INSERT INTO Questionnaire (subject) VALUES ('"+ questionnaire.getSubject()+"')";
             stmt.executeUpdate(sql);
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -114,7 +111,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         } finally {
             try {
                 if (stmt != null)
-                    stmt.close();
+                    
             } catch (SQLException se2) {
                 se2.printStackTrace();
             }
@@ -130,16 +127,16 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
     @Override
     public void update(Questionnaire questionnaire) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "UPDATE `questionnaire` SET `subject`='"+ questionnaire.getSubject() +
                     "',`status`= `"+ questionnaire.getStatus() +
                     "` WHERE `id`='"+ questionnaire.getId() +"'";
             stmt.executeUpdate(sql);
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -148,7 +145,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         } finally {
             try {
                 if (stmt != null)
-                    stmt.close();
+                    
             } catch (SQLException se2) {
                 se2.printStackTrace();
             }
@@ -164,15 +161,15 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
     @Override
     public void delete(Questionnaire questionnaire) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "DELETE FROM `questionnaire`\n" +
                     "WHERE `id` = '"+questionnaire.getId()+"'";
             stmt.executeUpdate(sql);
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -181,7 +178,7 @@ public class DAOQuestionnaire implements DAOInterface<Questionnaire> {
         } finally {
             try {
                 if (stmt != null)
-                    stmt.close();
+                    
             } catch (SQLException se2) {
                 se2.printStackTrace();
             }

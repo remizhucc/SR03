@@ -1,9 +1,6 @@
 package Model;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,12 +10,12 @@ public class DAOAnswer implements DAOInterface<Answer> {
     @Override
     public Answer selectByID(Integer id) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         ResultSet result;
         Answer answer=null;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "select * from Answer where id=" + String.valueOf(id);
             result = stmt.executeQuery(sql);
@@ -30,7 +27,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
                         Constant.STATUS.valueOf(result.getString("status")),
                         Integer.valueOf(result.getInt("question")));
             }
-            stmt.close();
+            
             conn.close();
             return answer;
         } catch (SQLException se) {
@@ -45,11 +42,11 @@ public class DAOAnswer implements DAOInterface<Answer> {
     public ArrayList<Answer> selectAll() {
         ArrayList<Answer> resultList=new ArrayList<>();
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         ResultSet result;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "select * from Answer";
             result = stmt.executeQuery(sql);
@@ -62,7 +59,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
                         Integer.valueOf(result.getInt("question")));
                 resultList.add(answer);
             }
-            stmt.close();
+            
             conn.close();
             return resultList;
         } catch (SQLException se) {
@@ -78,10 +75,10 @@ public class DAOAnswer implements DAOInterface<Answer> {
     @Override
     public void add(Answer answer) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             Integer correction = answer.getCorrection()?1:0;
             sql = "INSERT INTO Answer (text, position, correction, question) VALUES " + "('"
@@ -91,7 +88,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
                     + answer.getQuestion() + "')";
             stmt.executeUpdate(sql);
 
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -103,10 +100,10 @@ public class DAOAnswer implements DAOInterface<Answer> {
     @Override
     public void update(Answer answer) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "UPDATE Answer SET text="+answer.getText()+"'"
                     +"position='"+answer.getPosition()+"'"
@@ -116,7 +113,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
                     +" WHERE id='"+answer.getId()+"'";
             stmt.executeUpdate(sql);
 
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -128,15 +125,15 @@ public class DAOAnswer implements DAOInterface<Answer> {
     @Override
     public void delete(Answer answer) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "DELETE FROM Answer WHERE id="+answer.getId();
             stmt.executeUpdate(sql);
 
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -148,11 +145,11 @@ public class DAOAnswer implements DAOInterface<Answer> {
     public ArrayList<Answer> selectByQuestionID(Integer id) {
         ArrayList<Answer> resultList=new ArrayList<>();
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         ResultSet result;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
             sql = "select * from Answer WHERE question='"+String.valueOf(id)+"'";
             result = stmt.executeQuery(sql);
@@ -165,7 +162,7 @@ public class DAOAnswer implements DAOInterface<Answer> {
                         Integer.valueOf(result.getInt("question")));
                 resultList.add(answer);
             }
-            stmt.close();
+            
             conn.close();
             return resultList;
         } catch (SQLException se) {

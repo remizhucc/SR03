@@ -1,9 +1,6 @@
 package Model;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,15 +8,16 @@ public class DAOUser implements DAOInterface<User> {
 
     public User selectByEmail(String email) {
         Connection conn = null;
-        Statement stmt = null;
         ResultSet result;
+        PreparedStatement sqlPrepare;
         User user = null;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
             String sql;
-            sql = "select * from User where email='" + String.valueOf(email) + "'";
-            result = stmt.executeQuery(sql);
+            sql = "SELECT * FROM User WHERE email= ? ";
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setString(1,String.valueOf(email));
+            result = sqlPrepare.executeQuery(sql);
             while (result.next()) {
                 user = new User(Integer.valueOf(result.getInt("id")),
                         result.getString("email"),
@@ -33,7 +31,6 @@ public class DAOUser implements DAOInterface<User> {
                         Constant.USERTYPE.valueOf(result.getString("type")));
 
             }
-            stmt.close();
             conn.close();
             return user;
         } catch (SQLException se) {
@@ -46,15 +43,16 @@ public class DAOUser implements DAOInterface<User> {
 
     public User selectByID(Integer id) {
         Connection conn = null;
-        Statement stmt = null;
         ResultSet result;
+        PreparedStatement sqlPrepare;
         User user = null;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
             String sql;
-            sql = "select * from User where id='" + String.valueOf(id) + "'";
-            result = stmt.executeQuery(sql);
+            sql = "SELECT * FROM User WHERE id= ? ";
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setInt(1,id);
+            result = sqlPrepare.executeQuery(sql);
             while (result.next()) {
                 user = new User(Integer.valueOf(result.getInt("id")),
                         result.getString("email"),
@@ -68,7 +66,6 @@ public class DAOUser implements DAOInterface<User> {
                         Constant.USERTYPE.valueOf(result.getString("type")));
 
             }
-            stmt.close();
             conn.close();
             return user;
         } catch (SQLException se) {
@@ -83,14 +80,14 @@ public class DAOUser implements DAOInterface<User> {
     public ArrayList<User> selectAll() {
         ArrayList<User> resultList = new ArrayList<>();
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         ResultSet result;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
             String sql;
-            sql = "select * from user";
-            result = stmt.executeQuery(sql);
+            sql = "SELECT * FROM user";
+            sqlPrepare=conn.prepareStatement(sql);
+            result = sqlPrepare.executeQuery();
             while (result.next()) {
                 User user = new User(Integer.valueOf(result.getInt("id")),
                         result.getString("email"),
@@ -105,7 +102,7 @@ public class DAOUser implements DAOInterface<User> {
 
                 resultList.add(user);
             }
-            stmt.close();
+            
             conn.close();
             return resultList;
         } catch (SQLException se) {
@@ -119,24 +116,24 @@ public class DAOUser implements DAOInterface<User> {
     @Override
     public void add(User user) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
-            sql = "INSERT INTO User (email, password, firstName, lastName, company, telephone, type) VALUES " +
-                    "('"
-                    + user.getEmail() + "', '"
-                    + user.getPassword() + "', '"
-                    + user.getFirstName() + "', '"
-                    + user.getLastName() + "', '"
-                    + user.getCompany() + "','"
-                    + user.getTelephone() + "','"
-                    + user.getType() +
-                    "')";
-            stmt.executeUpdate(sql);
+            sql = "INSERT INTO User (email, password, firstName, lastName, company, telephone, type) VALUES (?,?,?,?,?,?,?)";
 
-            stmt.close();
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setString(1,user.getEmail());
+            sqlPrepare.setString(2,user.getPassword());
+            sqlPrepare.setString(3,user.getFirstName());
+            sqlPrepare.setString(4,user.getLastName());
+            sqlPrepare.setString(5,user.getCompany());
+            sqlPrepare.setString(6,user.getTelephone());
+            sqlPrepare.setString(7,user.getType().toString());
+            sqlPrepare.executeUpdate();
+
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -148,23 +145,27 @@ public class DAOUser implements DAOInterface<User> {
     @Override
     public void update(User user) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
-            sql = "UPDATE User SET email='" + user.getEmail() + "'"
-                    + "password='" + user.getPassword() + "'"
-                    + "firstName='" + user.getFirstName() + "'"
-                    + "lastName='" + user.getLastName() + "'"
-                    + "company='" + user.getCompany() + "'"
-                    + "telephone='" + user.getTelephone() + "'"
-                    + "status='" + user.getStatus().toString() + "'"
-                    + "type='" + user.getType().toString() + "'"
-                    + " WHERE id='" + user.getId() + "'";
-            stmt.executeUpdate(sql);
+            sql = "UPDATE User SET email= ?, password= ?, firstName= ?, lastName= ?, company=?, telephone=?, status=?"
+                    + "type=?, WHERE id=?";
 
-            stmt.close();
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setString(1,user.getEmail());
+            sqlPrepare.setString(2,user.getPassword());
+            sqlPrepare.setString(3,user.getFirstName());
+            sqlPrepare.setString(4,user.getLastName());
+            sqlPrepare.setString(5,user.getCompany());
+            sqlPrepare.setString(6,user.getTelephone());
+            sqlPrepare.setString(7,user.getStatus().toString());
+            sqlPrepare.setString(8,user.getType().toString());
+            sqlPrepare.setInt(9,user.getId());
+            sqlPrepare.executeUpdate();
+
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
@@ -176,15 +177,17 @@ public class DAOUser implements DAOInterface<User> {
     @Override
     public void delete(User user) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement sqlPrepare;
         try {
             conn = SQL.getSQLConnection();
-            stmt = conn.createStatement();
+            
             String sql;
-            sql = "DELETE FROM User WHERE id='" + user.getId() + "'";
-            stmt.executeUpdate(sql);
+            sql = "DELETE FROM User WHERE id=?";
+            sqlPrepare=conn.prepareStatement(sql);
+            sqlPrepare.setInt(1,user.getId());
+            sqlPrepare.executeUpdate(sql);
 
-            stmt.close();
+            
             conn.close();
         } catch (SQLException se) {
             se.printStackTrace();
