@@ -46,7 +46,35 @@
         <url-pattern>/action/createUser</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getAllUserAction</servlet-name>
+        <servlet-class>Controller.DisplayUserList</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>getAllUserAction</servlet-name>
+        <url-pattern>/User/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+    <servlet-name>displayEditUserAction</servlet-name>
+    <servlet-class>Controller.DisplayEditUser</servlet-class>
+</servlet>
+
+    <servlet-mapping>
+        <servlet-name>displayEditUserAction</servlet-name>
+        <url-pattern>/editUser/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>editUserAction</servlet-name>
+        <servlet-class>Controller.EditUser</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>editUserAction</servlet-name>
+        <url-pattern>/action/editUser</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>index</servlet-name>

@@ -27,6 +27,21 @@ public class User implements Serializable {
         this.telephone=telephone;
         this.type=Constant.USERTYPE.valueOf(type);
     }
+
+    //edit
+    public User(String id, String email,String password,String firstName,String lastName,String company,
+                String telephone, String type, String status){
+        this.id = Integer.parseInt(id);
+        this.email=email;
+        this.password=password;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.company=company;
+        this.telephone=telephone;
+        this.status=Constant.STATUS.valueOf(status);
+        this.type=Constant.USERTYPE.valueOf(type);
+    }
+
     public User(Integer id,String email,String password,String firstName,String lastName,String company,
                 String telephone,Date dateCreation, Constant.STATUS status,Constant.USERTYPE type){
         this.id=id;

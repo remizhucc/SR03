@@ -59,7 +59,7 @@ public class DAOUser implements DAOInterface<User> {
                 user = new User(Integer.valueOf(result.getInt("id")),
                         result.getString("email"),
                         result.getString("password"),
-                        result.getString("firstLame"),
+                        result.getString("firstName"),
                         result.getString("lastName"),
                         result.getString("company"),
                         result.getString("telephone"),
@@ -95,7 +95,7 @@ public class DAOUser implements DAOInterface<User> {
                 User user = new User(Integer.valueOf(result.getInt("id")),
                         result.getString("email"),
                         result.getString("password"),
-                        result.getString("firstLame"),
+                        result.getString("firstName"),
                         result.getString("lastName"),
                         result.getString("company"),
                         result.getString("telephone"),
@@ -153,14 +153,14 @@ public class DAOUser implements DAOInterface<User> {
             conn = SQL.getSQLConnection();
             stmt = conn.createStatement();
             String sql;
-            sql = "UPDATE User SET email='" + user.getEmail() + "'"
-                    + "password='" + user.getPassword() + "'"
-                    + "firstName='" + user.getFirstName() + "'"
-                    + "lastName='" + user.getLastName() + "'"
-                    + "company='" + user.getCompany() + "'"
-                    + "telephone='" + user.getTelephone() + "'"
-                    + "status='" + user.getStatus().toString() + "'"
-                    + "type='" + user.getType().toString() + "'"
+            sql = "UPDATE User SET email='" + user.getEmail() + "',"
+                    + " password='" + user.getPassword() + "',"
+                    + " firstName='" + user.getFirstName() + "',"
+                    + " lastName='" + user.getLastName() + "',"
+                    + " company='" + user.getCompany() + "',"
+                    + " telephone='" + user.getTelephone() + "',"
+                    + " status='" + user.getStatus().toString() + "',"
+                    + " type='" + user.getType().toString() + "'"
                     + " WHERE id='" + user.getId() + "'";
             stmt.executeUpdate(sql);
 
