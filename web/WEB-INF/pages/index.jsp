@@ -23,10 +23,10 @@
     if (session.getAttribute("type") == Constant.USERTYPE.ADMIN) {
 %>
 
-<form action="http://google.com" method="post">
+<form action="/createUser" method="get">
     <input type="submit" value="Create user"/>
 </form>
-<form action="http://google.com" method="post">
+<form action="/User/all" method="get">
     <input type="submit" value="User list"/>
 </form>
 
